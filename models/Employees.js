@@ -6,10 +6,19 @@ const employeeSchema = new Schema({
     type: Number,
     unique: true,
   },
-  nameRu: {
+  firstName: {
     type: String,
   },
-  nameEn: {
+  lastName: {
+    type: String,
+  },
+  firstNameNative: {
+    type: String,
+  },
+  lastNameNative: {
+    type: String,
+  },
+  middleNameNative: {
     type: String,
   },
   avatarSrc: {
@@ -42,6 +51,13 @@ const employeeSchema = new Schema({
   skype: {
     type: String,
     default: '',
+  },
+  role: {
+    type: String,
+    default: 'user',
+  },
+  password: {
+    type: String,
   },
   dateHired: {
     type: Number,

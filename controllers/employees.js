@@ -6,12 +6,10 @@ module.exports.getAll = async (req, res) => {
 
   users = await Employee.find({});
 
-  if (users) {
+  if (users.length) {
     if (searchQuery) {
       users = users.filter(
-        e =>
-          e.nameRu.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1 ||
-          e.nameEn.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1
+        e => e.nameRu.toLowerCase().indexOf(searchQuery) > -1 || e.nameEn.toLowerCase().indexOf(searchQuery) > -1
       );
     }
     res.status(200).json(users);
@@ -21,7 +19,6 @@ module.exports.getAll = async (req, res) => {
 };
 
 module.exports.getById = async (req, res) => {
-  console.log(req.params.id);
   const user = await Employee.findOne({ id: req.params.id });
 
   if (user) {
