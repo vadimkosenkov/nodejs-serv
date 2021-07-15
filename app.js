@@ -6,6 +6,7 @@ const roleRoute = require('./routes/role');
 const keys = require('./config/keys');
 const app = express();
 const router = express.Router();
+const authRoutes = require('./routes/auth');
 
 mongoose
     .connect(keys.mongoURI, {
@@ -32,5 +33,6 @@ app.use(
         res.status(200).json('server started!');
     }),
 );
+app.use('/auth/login', authRoutes);
 
 module.exports = app;
