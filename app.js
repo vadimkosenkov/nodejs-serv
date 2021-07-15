@@ -6,17 +6,16 @@ const roleRoute = require('./routes/role');
 const keys = require('./config/keys');
 const app = express();
 const router = express.Router();
-const authRoutes = require('./routes/auth');
 
 mongoose
-    .connect(keys.mongoURI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-    })
-    .then(() => console.log('mongoDB connected'))
-    .catch(error => console.log(error));
+  .connect(keys.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log('mongoDB connected'))
+  .catch(error => console.log(error));
 
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -28,11 +27,10 @@ app.use('/auth/login', authRoutes);
 app.use('/api/role', roleRoute);
 
 app.use(
-    '/',
-    router.get('/', (req, res) => {
-        res.status(200).json('server started!');
-    }),
+  '/',
+  router.get('/', (req, res) => {
+    res.status(200).json('server started!');
+  })
 );
-app.use('/auth/login', authRoutes);
 
 module.exports = app;
