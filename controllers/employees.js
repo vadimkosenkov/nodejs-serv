@@ -45,7 +45,6 @@ module.exports.getById = async (req, res) => {
 
 module.exports.updateEmployee = async (req, res) => {
   try {
-    console.log(req.params.id);
     const employee = await Employee.findOneAndUpdate(
       { id: req.params.id },
       {
@@ -53,7 +52,6 @@ module.exports.updateEmployee = async (req, res) => {
       },
       { new: true }
     );
-    console.log(employee);
     res.status(200).json(employee);
   } catch (e) {
     errorHandler(res, e);
